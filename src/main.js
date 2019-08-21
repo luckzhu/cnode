@@ -5,8 +5,11 @@ import App from './App'
 import router from './router'
 import Meta from 'vue-meta'
 import '@/assets/js/common.js' //移动端适配common
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(Meta)
+Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
