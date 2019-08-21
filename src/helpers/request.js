@@ -19,7 +19,7 @@ export default function request(url, type = 'GET', data = {}) {
     axios(option)
       .then(res => {
         if (res.status === 200) {
-          resolve(res.data)
+          resolve(res)
         } else {
           Message.error(res.status)
           reject(res.status)

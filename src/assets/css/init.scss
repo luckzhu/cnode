@@ -138,3 +138,12 @@ body,
     line-height: 20px;
 }
  
+
+.el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+    margin: 0 5px;
+    background-color: #fff;
+    border: 1px solid #dfdfdf;
+    color: #606266;
+    min-width: 30px;
+    border-radius: 2px;
+}

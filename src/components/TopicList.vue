@@ -7,7 +7,7 @@
           <img :src="topic.author.avatar_url" alt="" />
         </div>
         <div class="topicInfo">
-          <h3>{{ ellipsis(topic.title,35) }}</h3>
+          <h3>{{ ellipsis(topic.title, 35) }}</h3>
           <p>{{ topic.author.loginname }}</p>
           <div class="disscussPeople">
             <img :src="topic.author.avatar_url" alt="" />
@@ -17,12 +17,20 @@
           </div>
         </div>
         <div class="replyAndVisit">
-          <my-icon name="see"></my-icon>
-          <span>{{ topic.reply_count }}</span>
           <my-icon name="discuss1e"></my-icon>
+          <span>{{ topic.reply_count }}</span>
+          <my-icon name="see"></my-icon>
           <span>{{ topic.visit_count }}</span>
         </div>
       </div>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="27500"
+        :current-page="page"
+        @current-change="onPageChange"
+      >
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -34,7 +42,8 @@ import Icon from "./Icon";
 export default {
   data() {
     return {
-      topicList: null
+      topicList: null,
+      page: 1,
     };
   },
   components: {
@@ -45,8 +54,25 @@ export default {
   },
   methods: {
     getTopics() {
-      topic.getTopics().then(res => {
-        this.topicList = res.data;
+      this.page = parseInt(this.$route.query.page) || 1;
+      topic.getTopics({ page: this.page, limit: 10 }).then(res => {
+        this.topicList = res.data.data;
+        this.$router.push({
+          path: "/introduce_pc",
+          query: { page: this.page }
+        });
+        console.log(res);
+      });
+    },
+    onPageChange(newPage) {
+      topic.getTopics({ page: newPage, limit: 10 }).then(res => {
+        this.topicList = res.data.data;
+        this.page = newPage;
+        this.$router.push({
+          path: "/introduce_pc",
+          query: { page: this.page }
+        });
+        console.log(res);
       });
     }
   }
@@ -58,10 +84,17 @@ export default {
 #topicList {
   font-size: 16px;
   background-color: #fff;
-  max-width: 690px;
+  width: 690px;
   padding: 15px;
   border-radius: 5px;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  > .el-pagination {
+    align-self: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
   > .topic_item {
     display: flex;
     padding: 10px;
@@ -108,7 +141,7 @@ export default {
         > span {
           font-size: 13px;
           color: $lightestGray;
-          margin-left: 2px;
+          margin-left: 4px;
         }
       }
     }
