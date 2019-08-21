@@ -59,7 +59,6 @@ export default {
   font-size: 16px;
   background-color: #fff;
   max-width: 690px;
-  margin: 20px;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);

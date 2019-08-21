@@ -1,8 +1,11 @@
 <template>
   <div>
     <Header></Header>
-    <TopicList></TopicList>
-    
+    <div class="main">
+      <TopicList id="topocList"></TopicList>
+      <Standings></Standings>
+    </div>
+
     <!-- <el-container>
       <el-header height="72px">
         
@@ -17,18 +20,30 @@
 </template>
 
 <script>
-import Header from '@/components/Header.vue'
-import TopicList from '@/components/TopicList.vue'
+import Header from "@/components/Header.vue";
+import TopicList from "@/components/TopicList.vue";
+import Standings from "@/components/Standings.vue";
 export default {
   //配置移动端页面meta
-  components:{
+  components: {
     Header,
-    TopicList
+    TopicList,
+    Standings
   }
 };
 </script>
 
 <style scoped>
+.main{
+  display: flex;
+  justify-content: center;
+   margin: 20px;
+   
+}
+
+#topocList{
+  margin-right: 20px;
+}
 /* .el-header,
 .el-footer {
   background-color: #b3c0d1;
