@@ -30,6 +30,8 @@ export default {
 
 <style lang="scss">
 @import './assets/css/init.scss';
-
+body{
+  background-color: #f3f3f3;
+}
 
 </style>

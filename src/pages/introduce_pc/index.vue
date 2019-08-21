@@ -1,6 +1,8 @@
 <template>
   <div>
     <Header></Header>
+    <TopicList></TopicList>
+    
     <!-- <el-container>
       <el-header height="72px">
         
@@ -16,10 +18,12 @@
 
 <script>
 import Header from '@/components/Header.vue'
+import TopicList from '@/components/TopicList.vue'
 export default {
   //配置移动端页面meta
   components:{
-    Header
+    Header,
+    TopicList
   }
 };
 </script>

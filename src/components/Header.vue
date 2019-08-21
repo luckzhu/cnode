@@ -54,6 +54,7 @@ export default {
   height: 36px;
   padding: 16px 72px;
   border-bottom: 1px solid $border-color;
+  background-color: #fff;
   > .topNavBar {
     display: flex;
     align-items: center;

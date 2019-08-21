@@ -7,9 +7,11 @@ import Meta from 'vue-meta'
 import '@/assets/js/common.js' //移动端适配common
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import Util from '@/helpers/util.js'
 
 Vue.use(Meta)
 Vue.use(ElementUI)
+Vue.use(Util)
 
 Vue.config.productionTip = false
 
