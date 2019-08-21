@@ -1,23 +1,31 @@
 <template>
   <div>
-    <el-container>
-      <el-header height="72px">Header</el-header>
+    <Header></Header>
+    <!-- <el-container>
+      <el-header height="72px">
+        
+        <Header></Header>
+      </el-header>
       <el-container>
         <el-aside width="480px">Aside</el-aside>
         <el-main>Main</el-main>
       </el-container>
-    </el-container>
+    </el-container> -->
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
 export default {
   //配置移动端页面meta
+  components:{
+    Header
+  }
 };
 </script>
 
 <style scoped>
-.el-header,
+/* .el-header,
 .el-footer {
   background-color: #b3c0d1;
   color: #333;
@@ -47,5 +55,5 @@ export default {
 
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
-}
+} */
 </style>
