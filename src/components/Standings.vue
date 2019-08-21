@@ -47,11 +47,11 @@ let topAuthor = [
   },
   {
     id: 9,
-    avatar_url: " https://avatars2.githubusercontent.com/u/227713?v=4&s=120"
+    avatar_url: "https://avatars2.githubusercontent.com/u/227713?v=4&s=120"
   },
   {
     id: 10,
-    avatar_url: " https://avatars0.githubusercontent.com/u/449224?v=4&s=120"
+    avatar_url: "https://avatars0.githubusercontent.com/u/449224?v=4&s=120"
   }
 ];
 export default {
@@ -69,8 +69,8 @@ export default {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
-  width: 290px;
-  padding: 15px;
+  width: 300px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;

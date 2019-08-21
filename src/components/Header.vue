@@ -10,7 +10,7 @@
       </ul>
     </div>
     <div class="topSearch">
-      <el-input placeholder="Search..." v-model="searchInput" clearable>
+      <el-input placeholder="Search your favorite thing..." v-model="searchInput" clearable>
       </el-input>
     </div>
     <!-- 已登录的header右侧 -->

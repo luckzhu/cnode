@@ -21,10 +21,10 @@ function friendlyDate(dateStr) {
   return str
 }
 
-function ellipsis (value) {
+function ellipsis (value,length) {
   if (!value) return ''
-  if (value.length > 35) {
-    return value.slice(0,35) + '...'
+  if (value.length > length) {
+    return value.slice(0,length) + '...'
   }
   return value
 }

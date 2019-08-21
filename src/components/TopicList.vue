@@ -7,7 +7,7 @@
           <img :src="topic.author.avatar_url" alt="" />
         </div>
         <div class="topicInfo">
-          <h3>{{ ellipsis(topic.title) }}</h3>
+          <h3>{{ ellipsis(topic.title,35) }}</h3>
           <p>{{ topic.author.loginname }}</p>
           <div class="disscussPeople">
             <img :src="topic.author.avatar_url" alt="" />

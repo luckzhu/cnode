@@ -2,8 +2,11 @@
   <div>
     <Header></Header>
     <div class="main">
-      <TopicList id="topocList"></TopicList>
-      <Standings></Standings>
+      <TopicList class="topocList"></TopicList>
+      <div class="side">
+        <Standings></Standings>
+        <Noreply class="noReply"></Noreply>
+      </div>
     </div>
 
     <!-- <el-container>
@@ -23,25 +26,35 @@
 import Header from "@/components/Header.vue";
 import TopicList from "@/components/TopicList.vue";
 import Standings from "@/components/Standings.vue";
+import Noreply from "@/components/Noreply.vue";
 export default {
   //配置移动端页面meta
   components: {
     Header,
     TopicList,
-    Standings
+    Standings,
+    Noreply
   }
 };
 </script>
 
-<style scoped>
-.main{
+<style scoped lang="scss">
+.main {
   display: flex;
   justify-content: center;
-   margin: 20px;
-   
+  margin: 20px;
+
+  >.side{
+    display: flex;
+    flex-direction: column;
+
+    >.noReply{
+      margin-top: 20px;
+    }
+  }
 }
 
-#topocList{
+.topocList {
   margin-right: 20px;
 }
 /* .el-header,
