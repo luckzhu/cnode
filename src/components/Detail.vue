@@ -17,11 +17,27 @@
             {{ loginname }}
             <span>{{ friendlyDate(topicDetail.create_at) }}</span>
           </div>
-          <div
-            class="markdown-body"
-            id="content"
-            v-html="content"
-          ></div>
+          <div class="markdown-body" id="content" v-html="content"></div>
+        </div>
+      </div>
+
+      <div v-if="replies[0]">
+        <div class="comment-count">{{ replies.length }} 条评论</div>
+        <div
+          class="comment-container"
+          v-for="(reply, index) in replies"
+          :key="reply.id"
+        >
+          <div class="avatar-name">
+            <img :src="reply.author.avatar_url" alt="" />
+            <p class="name">{{ reply.author.loginname }}</p>
+            <div class="comment-info">
+              <span>{{ index + 1 }}楼</span>
+              <span>{{ friendlyDate(reply.create_at) }}</span>
+              <span v-if="reply.ups.length">{{ reply.ups.length }}点赞</span>
+            </div>
+          </div>
+          <p class="comment" id="content" v-html="reply.content"></p>
         </div>
       </div>
     </div>
@@ -38,7 +54,8 @@ export default {
       author: null,
       avatar_url: null,
       loginname: null,
-      content: null
+      content: null,
+      replies: []
     };
   },
   created() {
@@ -53,6 +70,7 @@ export default {
         this.avatar_url = res.data.data.author.avatar_url;
         this.loginname = res.data.data.author.loginname;
         this.content = res.data.data.content;
+        this.replies = res.data.data.replies;
         console.log(this.topicDetail);
       });
     }
@@ -62,7 +80,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/base.scss";
-
 
 #detail {
   font-size: 16px;
@@ -81,6 +98,7 @@ export default {
     font-size: 15px;
     margin-top: 12px;
     margin-bottom: 30px;
+    color: $lightGray;
     > span {
       margin-right: 6px;
     }
@@ -113,7 +131,7 @@ export default {
   }
 
   .markdown-text {
-    >>>  {
+    >>> {
       margin: 10px;
     }
   }
@@ -121,7 +139,7 @@ export default {
   .markdown-body {
     box-sizing: border-box;
     min-width: 200px;
-    max-width: 980px;
+    max-width: 890px;
     margin: 0 auto;
   }
 
@@ -132,6 +150,52 @@ export default {
   }
   .markdown-body img {
     width: 92% !important;
+  }
+}
+.comment-count {
+  font-size: 20px;
+  font-weight: 700;
+  color: $gray;
+  margin: 30px 0;
+}
+.comment-container {
+  margin-top: 20px;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+    border-bottom: 1px solid $border-color;
+  }
+
+  > .avatar-name {
+    display: flex;
+    align-items: flex-end;
+    > img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    > .name {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0 12px;
+      margin-bottom: 16px;
+    }
+
+    > .comment-info {
+      font-size: 14px;
+      color: $lightestGray;
+      display: flex;
+      align-items: center;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      > span {
+        margin-right: 4px;
+      }
+    }
+  }
+
+  .comment {
+    margin-left: 50px;
+    margin-top: -10px;
   }
 }
 </style>
