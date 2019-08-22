@@ -1,14 +1,7 @@
 <template>
   <div>
-    <div id="topicList">
+    <div id="topicList" >
       <div class="theme_nav">
-        <!-- <ul>
-          <li><a href="#">全部</a></li>
-          <li><a href="#">精华</a></li>
-          <li><a href="#">分享</a></li>
-          <li><a href="#">问答</a></li>
-          <li><a href="#">招聘</a></li>
-        </ul> -->
         <template>
           <el-menu
             :default-active="activeIndex"
@@ -29,7 +22,11 @@
           <img :src="topic.author.avatar_url" alt="" />
         </div>
         <div class="topicInfo">
-          <h3>{{ ellipsis(topic.title, 35) }}</h3>
+          <h3>
+            <router-link :to="`/pc/detail/${topic.id}`">{{
+              ellipsis(topic.title, 35)
+            }}</router-link>
+          </h3>
           <p>{{ topic.author.loginname }}</p>
           <div class="disscussPeople">
             <img :src="topic.author.avatar_url" alt="" />
@@ -59,12 +56,11 @@
 
 <script>
 import topic from "@/api/topic.js";
-import axios from "axios";
 import Icon from "./Icon";
 export default {
   data() {
     return {
-      topicList: null,
+      topicList: [],
       page: 1,
       activeIndex: "all",
       tab: "all"
@@ -84,10 +80,9 @@ export default {
         .then(res => {
           this.topicList = res.data.data;
           this.$router.push({
-            path: "/introduce_pc",
+            path: "/pc",
             query: { page: this.page, tab: this.tab }
           });
-          console.log(res);
         });
     },
     onPageChange(newPage) {
@@ -95,10 +90,9 @@ export default {
         this.topicList = res.data.data;
         this.page = newPage;
         this.$router.push({
-          path: "/introduce_pc",
+          path: "/pc",
           query: { page: this.page, tab: this.tab }
         });
-        console.log(res);
       });
     },
     handleSelect(key, keyPath) {
@@ -125,7 +119,7 @@ export default {
 
   > .theme_nav {
     margin-bottom: 10px;
-    margin-top:-4px;
+    margin-top: -4px;
   }
 
   > .el-pagination {

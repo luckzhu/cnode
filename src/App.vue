@@ -11,10 +11,10 @@ export default {
   mounted() {
     if (this._isMobile()) {
       console.log("手机端");
-      this.$router.replace("/introduce_wap");
+      this.$router.replace("/wap");
     } else {
       console.log("pc端");
-      this.$router.replace("/introduce_pc");
+      this.$router.replace("/pc");
     }
   },
   methods: {
@@ -29,7 +29,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import './assets/css/init.scss';
+@import '@/assets/css/init.scss';
+@import "@/assets/css/markdown-github.scss";
 body{
   background-color: #f3f3f3;
 }
