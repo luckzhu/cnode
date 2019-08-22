@@ -6,8 +6,8 @@ let URL = {
 }
 
 export default {
-  getTopics({ page, limit }) {
-    return request(URL.GET_TOPICS, 'GET', { page, limit })
+  getTopics({ page, limit, tab }) {
+    return request(URL.GET_TOPICS, 'GET', { page, limit ,tab })
   },
   getTopicById({ id }) {
     return request(URL.GET_TOPIC_BY_ID.replace(':id', id))

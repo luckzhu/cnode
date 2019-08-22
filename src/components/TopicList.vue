@@ -1,7 +1,29 @@
 <template>
   <div>
     <div id="topicList">
-      <div class="theme_nav"></div>
+      <div class="theme_nav">
+        <!-- <ul>
+          <li><a href="#">全部</a></li>
+          <li><a href="#">精华</a></li>
+          <li><a href="#">分享</a></li>
+          <li><a href="#">问答</a></li>
+          <li><a href="#">招聘</a></li>
+        </ul> -->
+        <template>
+          <el-menu
+            :default-active="activeIndex"
+            class="el-menu-demo"
+            mode="horizontal"
+            @select="handleSelect"
+          >
+            <el-menu-item index="all">全部</el-menu-item>
+            <el-menu-item index="good">精华</el-menu-item>
+            <el-menu-item index="share">分享</el-menu-item>
+            <el-menu-item index="ask">问答</el-menu-item>
+            <el-menu-item index="job">招聘</el-menu-item>
+          </el-menu>
+        </template>
+      </div>
       <div class="topic_item" v-for="topic in topicList" :key="topic.id">
         <div class="avatar">
           <img :src="topic.author.avatar_url" alt="" />
@@ -44,6 +66,8 @@ export default {
     return {
       topicList: null,
       page: 1,
+      activeIndex: "all",
+      tab: "all"
     };
   },
   components: {
@@ -55,25 +79,33 @@ export default {
   methods: {
     getTopics() {
       this.page = parseInt(this.$route.query.page) || 1;
-      topic.getTopics({ page: this.page, limit: 10 }).then(res => {
-        this.topicList = res.data.data;
-        this.$router.push({
-          path: "/introduce_pc",
-          query: { page: this.page }
+      topic
+        .getTopics({ page: this.page, limit: 10, tab: this.tab })
+        .then(res => {
+          this.topicList = res.data.data;
+          this.$router.push({
+            path: "/introduce_pc",
+            query: { page: this.page, tab: this.tab }
+          });
+          console.log(res);
         });
-        console.log(res);
-      });
     },
     onPageChange(newPage) {
-      topic.getTopics({ page: newPage, limit: 10 }).then(res => {
+      topic.getTopics({ page: newPage, limit: 10, tab: this.tab }).then(res => {
         this.topicList = res.data.data;
         this.page = newPage;
         this.$router.push({
           path: "/introduce_pc",
-          query: { page: this.page }
+          query: { page: this.page, tab: this.tab }
         });
         console.log(res);
       });
+    },
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
+      this.tab = key;
+      this.activeIndex = key;
+      this.getTopics();
     }
   }
 };
@@ -90,6 +122,12 @@ export default {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+
+  > .theme_nav {
+    margin-bottom: 10px;
+    margin-top:-4px;
+  }
+
   > .el-pagination {
     align-self: center;
     margin-top: 20px;
