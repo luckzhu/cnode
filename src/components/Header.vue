@@ -3,7 +3,8 @@
     <div class="topNavBar">
       <my-icon name="js" class="logo"></my-icon>
       <ul>
-        <li><a href="#">首页</a></li>
+       
+        <li><router-link to='/pc'>首页 </router-link></li>
         <li><a href="#">新手入门</a></li>
         <li><a href="#">API</a></li>
         <li><a href="#">关于</a></li>

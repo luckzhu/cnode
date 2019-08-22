@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import pc from '@/pages/pc'
 import wap from '@/pages/wap'
-import detail from '@/components/Detail.vue'
+import topic from '@/pages/pc/topic.vue'
 import main from '@/pages/pc/main.vue'
 
 Vue.use(Router)
@@ -19,7 +19,7 @@ export default new Router({
         },
         {
           path: 'detail/:id',
-          component: detail
+          component: topic
         },
       ]
     },

@@ -24,7 +24,7 @@
         <div class="topicInfo">
           <h3>
             <router-link :to="`/pc/detail/${topic.id}`">{{
-              ellipsis(topic.title, 35)
+              ellipsis(topic.title, 55)
             }}</router-link>
           </h3>
           <p>{{ topic.author.loginname }}</p>
@@ -110,7 +110,7 @@ export default {
 #topicList {
   font-size: 16px;
   background-color: #fff;
-  width: 690px;
+  width: 890px;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
