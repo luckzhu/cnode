@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="topicList" >
+    <div id="topicList">
       <div class="theme_nav">
         <template>
           <el-menu
@@ -19,8 +19,9 @@
       </div>
       <div class="topic_item" v-for="topic in topicList" :key="topic.id">
         <div class="avatar">
-          
-          <router-link :to="`PC/user/${topic.author.loginname}`"><img :src="topic.author.avatar_url" alt="" /></router-link>
+          <router-link :to="`PC/user/${topic.author.loginname}`"
+            ><img :src="topic.author.avatar_url" alt=""
+          /></router-link>
         </div>
         <div class="topicInfo">
           <h3>
@@ -30,9 +31,12 @@
           </h3>
           <p>{{ topic.author.loginname }}</p>
           <div class="disscussPeople">
-            <img :src="topic.author.avatar_url" alt="" />
-            <img :src="topic.author.avatar_url" alt="" />
-            <img :src="topic.author.avatar_url" alt="" />
+            <div v-for="reply in topic.replies" :key="reply.id">
+              <router-link :to="`/pc/user/${reply.author.loginname}`">
+                <img :src="reply.author.avatar_url" alt="" />
+              </router-link>
+            </div>
+
             <span>{{ friendlyDate(topic.last_reply_at) }}</span>
           </div>
         </div>
@@ -71,12 +75,21 @@ export default {
     "my-icon": Icon
   },
   created() {
-    this.getTopics();
+    this.getTopics().then(() => {
+      this.topicList.forEach(topic => {
+        this.getTopicById(topic.id).then(res => {
+          this.$set(topic, "replies", res.data.data.replies);
+          if (topic.replies && topic.replies.length > 3) {
+            topic.replies.splice(3);
+          }
+        });
+      });
+    });
   },
   methods: {
     getTopics() {
       this.page = parseInt(this.$route.query.page) || 1;
-      topic
+      return topic
         .getTopics({ page: this.page, limit: 15, tab: this.tab })
         .then(res => {
           this.topicList = res.data.data;
@@ -85,6 +98,9 @@ export default {
             query: { page: this.page, tab: this.tab }
           });
         });
+    },
+    getTopicById(id) {
+      return topic.getTopicById({ id });
     },
     onPageChange(newPage) {
       topic.getTopics({ page: newPage, limit: 15, tab: this.tab }).then(res => {
@@ -134,7 +150,7 @@ export default {
     border-bottom: 1px solid #e8e8e8;
     position: relative;
     > .avatar {
-       img {
+      img {
         width: 80px;
         height: 80px;
         border: 1px solid $border-color;
@@ -161,7 +177,7 @@ export default {
       > .disscussPeople {
         display: flex;
         align-items: center;
-         img {
+        img {
           width: 22px;
           height: 22px;
           border: 1px solid $border-color;
