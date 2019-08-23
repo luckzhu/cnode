@@ -1,63 +1,65 @@
 <template>
   <div id="user">
-    <div class="userInfo"></div>
-    <div class="recentTopics">
-      <p class="tab-bar">近期发表</p>
-      <div class="topic_item" v-for="topic in recentTopics" :key="topic.id">
-        <div class="avatar">
-          <router-link :to="`PC/user/${topic.author.loginname}`"
-            ><img :src="topic.author.avatar_url" alt=""
-          /></router-link>
-        </div>
-        <div class="topicInfo">
-          <h3>
-            <router-link :to="`/pc/detail/${topic.id}`">{{
-              ellipsis(topic.title, 35)
-            }}</router-link>
-          </h3>
-          <p>{{ topic.author.loginname }}</p>
-          <div class="disscussPeople">
-            <img :src="topic.author.avatar_url" alt="" />
-            <img :src="topic.author.avatar_url" alt="" />
-            <img :src="topic.author.avatar_url" alt="" />
-            <span>{{ friendlyDate(topic.last_reply_at) }}</span>
+    <div>
+      <div class="userInfo"></div>
+      <div class="recentTopics">
+        <p class="tab-bar">近期发表</p>
+        <div class="topic_item" v-for="topic in recentTopics" :key="topic.id">
+          <div class="avatar">
+            <router-link :to="`PC/user/${topic.author.loginname}`"
+              ><img :src="topic.author.avatar_url" alt=""
+            /></router-link>
           </div>
-        </div>
-        <div class="replyAndVisit">
-          <my-icon name="discuss1e"></my-icon>
-          <span>{{ topic.reply_count }}</span>
-          <my-icon name="see"></my-icon>
-          <span>{{ topic.visit_count }}</span>
+          <div class="topicInfo">
+            <h3>
+              <router-link :to="`/pc/detail/${topic.id}`">{{
+                ellipsis(topic.title, 35)
+              }}</router-link>
+            </h3>
+            <p>{{ topic.author.loginname }}</p>
+            <div class="disscussPeople">
+              <img :src="topic.author.avatar_url" alt="" />
+              <img :src="topic.author.avatar_url" alt="" />
+              <img :src="topic.author.avatar_url" alt="" />
+              <span>{{ friendlyDate(topic.last_reply_at) }}</span>
+            </div>
+          </div>
+          <div class="replyAndVisit">
+            <my-icon name="discuss1e"></my-icon>
+            <span>{{ topic.reply_count }}</span>
+            <my-icon name="see"></my-icon>
+            <span>{{ topic.visit_count }}</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="recentReplies">
-      <p class="tab-bar">近期回复</p>
-      <div class="topic_item" v-for="topic in recentReplies" :key="topic.id">
-        <div class="avatar">
-          <router-link :to="`PC/user/${topic.author.loginname}`"
-            ><img :src="topic.author.avatar_url" alt=""
-          /></router-link>
-        </div>
-        <div class="topicInfo">
-          <h3>
-            <router-link :to="`/pc/detail/${topic.id}`">{{
-              ellipsis(topic.title, 35)
-            }}</router-link>
-          </h3>
-          <p>{{ topic.author.loginname }}</p>
-          <div class="disscussPeople">
-            <img :src="topic.author.avatar_url" alt="" />
-            <img :src="topic.author.avatar_url" alt="" />
-            <img :src="topic.author.avatar_url" alt="" />
-            <span>{{ friendlyDate(topic.last_reply_at) }}</span>
+      <div class="recentReplies">
+        <p class="tab-bar">近期回复</p>
+        <div class="topic_item" v-for="topic in recentReplies" :key="topic.id">
+          <div class="avatar">
+            <router-link :to="`PC/user/${topic.author.loginname}`"
+              ><img :src="topic.author.avatar_url" alt=""
+            /></router-link>
           </div>
-        </div>
-        <div class="replyAndVisit">
-          <my-icon name="discuss1e"></my-icon>
-          <span>{{ topic.reply_count }}</span>
-          <my-icon name="see"></my-icon>
-          <span>{{ topic.visit_count }}</span>
+          <div class="topicInfo">
+            <h3>
+              <router-link :to="`/pc/detail/${topic.id}`">{{
+                ellipsis(topic.title, 35)
+              }}</router-link>
+            </h3>
+            <p>{{ topic.author.loginname }}</p>
+            <div class="disscussPeople">
+              <img :src="topic.author.avatar_url" alt="" />
+              <img :src="topic.author.avatar_url" alt="" />
+              <img :src="topic.author.avatar_url" alt="" />
+              <span>{{ friendlyDate(topic.last_reply_at) }}</span>
+            </div>
+          </div>
+          <div class="replyAndVisit">
+            <my-icon name="discuss1e"></my-icon>
+            <span>{{ topic.reply_count }}</span>
+            <my-icon name="see"></my-icon>
+            <span>{{ topic.visit_count }}</span>
+          </div>
         </div>
       </div>
     </div>
