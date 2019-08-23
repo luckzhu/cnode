@@ -75,16 +75,7 @@ export default {
     "my-icon": Icon
   },
   created() {
-    this.getTopics().then(() => {
-      this.topicList.forEach(topic => {
-        this.getTopicById(topic.id).then(res => {
-          this.$set(topic, "replies", res.data.data.replies);
-          if (topic.replies && topic.replies.length > 3) {
-            topic.replies.splice(3);
-          }
-        });
-      });
-    });
+    this.getTopicAllInfo()
   },
   methods: {
     getTopics() {
@@ -102,21 +93,45 @@ export default {
     getTopicById(id) {
       return topic.getTopicById({ id });
     },
-    onPageChange(newPage) {
-      topic.getTopics({ page: newPage, limit: 15, tab: this.tab }).then(res => {
-        this.topicList = res.data.data;
-        this.page = newPage;
-        this.$router.push({
-          path: "/pc",
-          query: { page: this.page, tab: this.tab }
+    getTopicAllInfo() {
+      this.getTopics().then(() => {
+        this.topicList.forEach(topic => {
+          this.getTopicById(topic.id).then(res => {
+            this.$set(topic, "replies", res.data.data.replies);
+            if (topic.replies && topic.replies.length > 3) {
+              topic.replies.splice(3);
+            }
+          });
         });
       });
+    },
+    onPageChange(newPage) {
+      topic
+        .getTopics({ page: newPage, limit: 15, tab: this.tab })
+        .then(res => {
+          this.topicList = res.data.data;
+          this.page = newPage;
+          this.$router.push({
+            path: "/pc",
+            query: { page: this.page, tab: this.tab }
+          });
+        })
+        .then(() => {
+          this.topicList.forEach(topic => {
+            this.getTopicById(topic.id).then(res => {
+              this.$set(topic, "replies", res.data.data.replies);
+              if (topic.replies && topic.replies.length > 3) {
+                topic.replies.splice(3);
+              }
+            });
+          });
+        });
     },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
       this.tab = key;
       this.activeIndex = key;
-      this.getTopics();
+       this.getTopicAllInfo()
     }
   }
 };
