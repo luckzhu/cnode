@@ -5,6 +5,9 @@ import wap from '@/pages/wap'
 import topic from '@/pages/pc/topic.vue'
 import main from '@/pages/pc/main.vue'
 import user from '@/pages/pc/user.vue'
+import getstart from '@/pages/pc/getstart.vue'
+import api from '@/components/api.vue'
+import reference from '@/pages/pc/reference.vue'
 
 Vue.use(Router)
 
@@ -26,6 +29,19 @@ export default new Router({
           path: 'user/:loginname',
           component: user
         },
+        {
+          path: 'getstart',
+          component: getstart
+        },
+        {
+          path: 'api',
+          component: api
+        },
+        {
+          path: 'reference',
+          component: reference
+        }
+        
       ]
     },
     {

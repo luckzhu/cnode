@@ -418,6 +418,7 @@
     font-size: 85%;
     background-color: rgba(0, 0, 0, 0.04);
     border-radius: 3px;
+    
 }
 
 #content code:before,
@@ -434,6 +435,7 @@
     white-space: pre;
     background: transparent;
     border: 0;
+    color: #eee;
 }
 
 #content .highlight {
@@ -446,7 +448,7 @@
     overflow: auto;
     font-size: 85%;
     line-height: 1.45;
-    background-color: black;
+    background-color: #333;
     border-radius: 3px;
 }
 

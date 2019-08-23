@@ -3,11 +3,10 @@
     <div class="topNavBar">
       <router-link to='/pc'><my-icon name="js" class="logo"></my-icon></router-link>
       <ul>
-       
         <li><router-link to='/pc'>首页 </router-link></li>
-        <li><a href="#">新手入门</a></li>
-        <li><a href="#">API</a></li>
-        <li><a href="#">关于</a></li>
+        <li><router-link to='/pc/getstart'>新手入门</router-link></li>
+        <li><router-link to='/pc/api'>API</router-link></li>
+        <li><router-link to='/pc/reference'>关于</router-link></li>
       </ul>
     </div>
     <div class="topSearch">
