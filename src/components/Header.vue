@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <div class="topNavBar">
-      <my-icon name="js" class="logo"></my-icon>
+      <router-link to='/pc'><my-icon name="js" class="logo"></my-icon></router-link>
       <ul>
        
         <li><router-link to='/pc'>首页 </router-link></li>
@@ -60,7 +60,7 @@ export default {
     display: flex;
     align-items: center;
 
-    > .logo {
+     .logo {
       font-size: 28px;
     }
     > ul {

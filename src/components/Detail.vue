@@ -133,7 +133,6 @@ export default {
         user.getUserByName({ loginname }).then(res => {
           this.authorInfo = res.data.data;
           this.score = res.data.data.score;
-          console.log(1, this.authorInfo);
           this.recentTopics = res.data.data.recent_topics;
           if (this.recentTopics && this.recentTopics.length >= 5) {
             this.recentTopics.splice(5);

@@ -19,12 +19,13 @@
       </div>
       <div class="topic_item" v-for="topic in topicList" :key="topic.id">
         <div class="avatar">
-          <img :src="topic.author.avatar_url" alt="" />
+          
+          <router-link :to="`PC/user/${topic.author.loginname}`"><img :src="topic.author.avatar_url" alt="" /></router-link>
         </div>
         <div class="topicInfo">
           <h3>
             <router-link :to="`/pc/detail/${topic.id}`">{{
-              ellipsis(topic.title, 55)
+              ellipsis(topic.title, 35)
             }}</router-link>
           </h3>
           <p>{{ topic.author.loginname }}</p>
@@ -110,7 +111,7 @@ export default {
 #topicList {
   font-size: 16px;
   background-color: #fff;
-  width: 890px;
+  width: 690px;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -133,7 +134,7 @@ export default {
     border-bottom: 1px solid #e8e8e8;
     position: relative;
     > .avatar {
-      > img {
+       img {
         width: 80px;
         height: 80px;
         border: 1px solid $border-color;
@@ -160,7 +161,7 @@ export default {
       > .disscussPeople {
         display: flex;
         align-items: center;
-        > img {
+         img {
           width: 22px;
           height: 22px;
           border: 1px solid $border-color;
