@@ -128,7 +128,6 @@ export default {
         });
     },
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
       this.tab = key;
       this.activeIndex = key;
        this.getTopicAllInfo()
