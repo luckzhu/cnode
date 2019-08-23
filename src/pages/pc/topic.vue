@@ -21,15 +21,12 @@ export default {
     Detail,
     DetailSideBar
   },
-  mounted() {
+  created() {
     this.id = this.$route.params.id;
 
     topic.getTopicById({ id: this.id }).then(res => {
       this.loginname = res.data.data.author.loginname;
-      console.log(1, this.loginname);
     });
-
-    console.log(2, this.loginname);
   }
 };
 </script>

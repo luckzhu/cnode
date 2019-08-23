@@ -2,7 +2,7 @@
   <div id="user">
     <div>
       <div class="userInfo"></div>
-      <div class="recentTopics">
+      <div class="recentTopics" v-if="recentTopics[0]">
         <p class="tab-bar">近期发表</p>
         <div class="topic_item" v-for="topic in recentTopics" :key="topic.id">
           <div class="avatar">
@@ -32,7 +32,7 @@
           </div>
         </div>
       </div>
-      <div class="recentReplies">
+      <div class="recentReplies" v-if="recentReplies[0]">
         <p class="tab-bar">近期回复</p>
         <div class="topic_item" v-for="topic in recentReplies" :key="topic.id">
           <div class="avatar">

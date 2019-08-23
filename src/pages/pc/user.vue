@@ -1,13 +1,17 @@
 <template>
   <div id="user">
     <UserInfo :loginname="loginname"></UserInfo>
-    <DetailSideBar :loginname="loginname"></DetailSideBar>
+    <div class="side">
+      <DetailSideBar :loginname="loginname"></DetailSideBar>
+      <Adside></Adside>
+    </div>
   </div>
 </template>
 
 <script>
 import UserInfo from "@/components/UserInfo.vue";
 import DetailSideBar from "@/components/DetailSideBar.vue";
+import Adside from "@/components/Adside.vue";
 
 export default {
   data() {
@@ -17,11 +21,11 @@ export default {
   },
   created() {
     this.loginname = this.$route.params.loginname;
-    
   },
   components: {
     UserInfo,
-    DetailSideBar
+    DetailSideBar,
+    Adside
   }
 };
 </script>
