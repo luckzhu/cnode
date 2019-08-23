@@ -1,16 +1,24 @@
 <template>
   <div id="header">
     <div class="topNavBar">
-      <router-link to='/pc'><my-icon name="js" class="logo"></my-icon></router-link>
+      <router-link to="/pc">
+        <div class="logo">
+          <img src="../assets/cnodejs.svg" alt="" />
+        </div>
+      </router-link>
       <ul>
-        <li><router-link to='/pc'>首页 </router-link></li>
-        <li><router-link to='/pc/getstart'>新手入门</router-link></li>
-        <li><router-link to='/pc/api'>API</router-link></li>
-        <li><router-link to='/pc/reference'>关于</router-link></li>
+        <li><router-link to="/pc">首页 </router-link></li>
+        <li><router-link to="/pc/getstart">新手入门</router-link></li>
+        <li><router-link to="/pc/api">API</router-link></li>
+        <li><router-link to="/pc/reference">关于</router-link></li>
       </ul>
     </div>
     <div class="topSearch">
-      <el-input placeholder="Search your favorite thing..." v-model="searchInput" clearable>
+      <el-input
+        placeholder="Search your favorite thing..."
+        v-model="searchInput"
+        clearable
+      >
       </el-input>
     </div>
     <!-- 已登录的header右侧 -->
@@ -59,21 +67,22 @@ export default {
     display: flex;
     align-items: center;
 
-     .logo {
-      font-size: 28px;
+    .logo {
+     width: 120px;
+     margin-right: -5px;
+     margin-bottom: 5px;
     }
     > ul {
       display: flex;
       > li {
         margin-left: 24px;
-        white-space:nowrap; 
+        white-space: nowrap;
       }
     }
   }
   > .topSearch {
     width: 600px;
     margin: 0 72px;
-   
   }
   > .myCenter {
     display: flex;
@@ -97,6 +106,4 @@ export default {
     }
   }
 }
-
-
 </style>
