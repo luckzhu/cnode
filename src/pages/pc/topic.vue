@@ -2,7 +2,10 @@
   <div>
     <div class="topic">
       <Detail class="detail"></Detail>
-      <DetailSideBar :loginname="loginname" v-if="loginname"></DetailSideBar>
+      <div>
+        <DetailSideBar :loginname="loginname" v-if="loginname"></DetailSideBar>
+        <Adside></Adside>
+      </div>
     </div>
   </div>
 </template>
@@ -11,6 +14,8 @@
 import Detail from "@/components/Detail.vue";
 import DetailSideBar from "@/components/DetailSideBar.vue";
 import topic from "@/api/topic.js";
+import Adside from "@/components/Adside.vue";
+
 export default {
   data() {
     return {
@@ -19,7 +24,8 @@ export default {
   },
   components: {
     Detail,
-    DetailSideBar
+    DetailSideBar,
+    Adside
   },
   created() {
     this.id = this.$route.params.id;

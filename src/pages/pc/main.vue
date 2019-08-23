@@ -5,6 +5,7 @@
       <div class="side">
         <Standings></Standings>
         <Noreply class="noReply"></Noreply>
+        <Adside></Adside>
       </div>
     </div>
   </div>
@@ -14,17 +15,19 @@
 import TopicList from "@/components/TopicList.vue";
 import Standings from "@/components/Standings.vue";
 import Noreply from "@/components/Noreply.vue";
+import Adside from "@/components/Adside.vue";
+
 export default {
   components: {
     TopicList,
     Standings,
-    Noreply
+    Noreply,
+    Adside
   }
 };
 </script>
 
 <style scoped lang="scss">
-
 .main {
   display: flex;
   justify-content: center;
@@ -35,7 +38,7 @@ export default {
     flex-direction: column;
 
     > .noReply {
-      margin-top: 20px;
+      margin: 20px 0;
     }
   }
 }
@@ -43,5 +46,4 @@ export default {
 .topocList {
   margin-right: 20px;
 }
-
 </style>

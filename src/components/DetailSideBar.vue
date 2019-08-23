@@ -14,7 +14,7 @@
 
       <div
         id="author-recent-topics"
-        v-if="recentTopics && recentTopics.length > 0"
+        v-if="recentTopics && recentTopics.length > 0 &&!isShowRecent"
       >
         <p>近期发表:</p>
         <div
@@ -30,7 +30,7 @@
 
       <div
         id="author-recent-replies"
-        v-if="authorInfo.recent_replies && authorInfo.recent_replies.length > 0"
+        v-if="authorInfo.recent_replies && authorInfo.recent_replies.length > 0 &&!isShowRecent"
       >
         <p>近期回复:</p>
         <div
@@ -64,10 +64,19 @@ export default {
       required: true
     }
   },
-  mounted() {
-      if (this.loginname) {
-        this.getUserByName(this.loginname);
+  computed: {
+    isShowRecent() {
+      if (this.$route.params.loginname) {
+        return true;
       }
+      return false;
+    }
+  },
+  mounted() {
+    if (this.loginname) {
+      this.getUserByName(this.loginname);
+    }
+    console.log();
   },
   methods: {
     getUserByName(loginname) {

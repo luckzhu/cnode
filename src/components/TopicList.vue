@@ -77,7 +77,7 @@ export default {
     getTopics() {
       this.page = parseInt(this.$route.query.page) || 1;
       topic
-        .getTopics({ page: this.page, limit: 10, tab: this.tab })
+        .getTopics({ page: this.page, limit: 15, tab: this.tab })
         .then(res => {
           this.topicList = res.data.data;
           this.$router.push({
@@ -87,7 +87,7 @@ export default {
         });
     },
     onPageChange(newPage) {
-      topic.getTopics({ page: newPage, limit: 10, tab: this.tab }).then(res => {
+      topic.getTopics({ page: newPage, limit: 15, tab: this.tab }).then(res => {
         this.topicList = res.data.data;
         this.page = newPage;
         this.$router.push({
