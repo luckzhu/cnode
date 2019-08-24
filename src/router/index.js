@@ -8,6 +8,7 @@ import user from '@/pages/pc/user.vue'
 import getstart from '@/pages/pc/getstart.vue'
 import api from '@/components/api.vue'
 import reference from '@/pages/pc/reference.vue'
+import login from '@/components/Login.vue'
 
 Vue.use(Router)
 
@@ -40,6 +41,10 @@ export default new Router({
         {
           path: 'reference',
           component: reference
+        },
+        {
+          path: 'login',
+          component: login
         }
         
       ]

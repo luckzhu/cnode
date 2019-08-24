@@ -32,7 +32,11 @@
       </div>
     </template>
     <!-- 未登录 -->
-    <template v-if="!isLogin"> </template>
+    <template v-if="!isLogin">
+      <router-link to="/pc/login">
+        <el-button type="primary">L0G IN</el-button></router-link
+      >
+    </template>
   </div>
 </template>
 
@@ -41,7 +45,7 @@ import Icon from "./Icon";
 export default {
   data() {
     return {
-      isLogin: true,
+      isLogin: false,
       searchInput: ""
     };
   },
@@ -68,9 +72,9 @@ export default {
     align-items: center;
 
     .logo {
-     width: 120px;
-     margin-right: -5px;
-     margin-bottom: 5px;
+      width: 120px;
+      margin-right: -5px;
+      margin-bottom: 5px;
     }
     > ul {
       display: flex;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <Header></Header>
     <div class="main">
       <router-view> </router-view>
@@ -22,11 +22,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 .main {
   display: flex;
   justify-content: center;
   margin: 20px;
+  flex: 1;
 }
-
 </style>
