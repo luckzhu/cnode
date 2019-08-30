@@ -278,6 +278,19 @@ export default {
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 480px) {
+  #user {
+    height: 100%;
+    width: 100vw;
+
+    .topic_item {
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+   
+  }
 }
 </style>

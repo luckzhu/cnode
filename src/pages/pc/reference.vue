@@ -114,11 +114,11 @@
           </div>
         </div>
       </div>
-      <div class="side">
+      <!-- <div class="side">
         <Standings></Standings>
         <Noreply class="noReply"></Noreply>
         <Adside></Adside>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -151,7 +151,7 @@ export default {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  margin-right: 20px;
+  // margin-right: 20px;
 
   img {
     width: 250px;
@@ -161,5 +161,13 @@ export default {
 
 .noReply{
   margin: 20px 0;
+}
+
+@media screen and (max-width: 480px) {
+  .panel {
+    height: 100%;
+    width: 100vw;
+    margin: 0;
+  }
 }
 </style>

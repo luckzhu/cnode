@@ -31,4 +31,12 @@ export default {
 .adSide{
   margin-left: 20px;
 }
+
+
+@media screen and (max-width: 480px) {
+  #user {
+     margin: 0 2%;
+  }
+}
+
 </style>

@@ -259,15 +259,45 @@ export default {
   }
 }
 
-@media screen and (max-width: 960px) {
-  #topicList {
-  }
-}
-
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 480px) {
+  #detail {
+    height: 100%;
+    width: 100%;
+    padding: 6%;
+    font-size: 16px;
   
-}
+    > .title {
+      font-size: 20px;
+    }
+    > .topicInfo {
+      font-size: 13px;
+      margin-top: 12px;
+      margin-bottom: 15px;
+      > span {
+        margin-right: 6px;
+      }
+    }
 
-@media screen and (max-width: 640px) {
+    > .topicDetail {
+      > .avatar {
+        img {
+          width: 40px;
+          height: 40px;
+          margin-right: 10px;
+        }
+      }
+      > .artical {
+        > .userName {
+          font-size: 16px;
+          font-weight: bold;
+          margin-bottom: 8px;
+          > span {
+            font-size: 12px;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

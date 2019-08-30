@@ -48,7 +48,7 @@ export default {
       width: 80%;
     }
     > .side {
-      margin-left: -20px;
+     
       > .standings {
         display: none;
       }

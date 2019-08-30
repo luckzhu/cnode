@@ -230,4 +230,11 @@ export default {};
   //   padding:0 10px ;
   // }
 }
+@media screen and (max-width: 480px) {
+  .panel {
+    height: 100%;
+    width: 100vw;
+    margin: 0;
+  }
+}
 </style>

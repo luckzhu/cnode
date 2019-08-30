@@ -46,4 +46,12 @@ export default {
 .adSide{
   margin-left: 20px;
 }
+
+@media screen and (max-width: 480px) {
+  .topic {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+}
 </style>

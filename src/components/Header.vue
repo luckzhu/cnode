@@ -39,7 +39,9 @@
     <!-- 未登录 -->
     <template v-if="!isLogin">
       <router-link to="/pc/login">
-        <el-button type="primary" class="loginButton">L0G IN</el-button></router-link
+        <el-button type="primary" class="loginButton"
+          >L0G IN</el-button
+        ></router-link
       >
     </template>
   </div>
@@ -107,14 +109,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/base.scss";
-@media screen and (max-width: 960px) {
-  .topSearch{
-    display: none;
-  }
-  .loginButton{
-    margin-left: 60px;
-  }
-}
+
 #header {
   color: $black;
   display: flex;
@@ -166,6 +161,55 @@ export default {
         border: 1px solid $border-color;
       }
     }
+  }
+}
+@media screen and (max-width: 960px) {
+  .topSearch {
+    display: none;
+  }
+  .loginButton {
+    margin-left: 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #header {
+    font-size: 13px;
+    height: 20px;
+    padding: 16px 10px;
+    > .topNavBar {
+      .logo {
+        width: 80px;
+        margin-right: 0px;
+       margin-bottom: -2px;
+      }
+      > ul {
+        > li {
+          margin-left: 16px;
+          white-space: nowrap;
+        }
+      }
+    }
+    > .myCenter {
+      .icon {
+        font-size: 24px;
+        width: 32px;
+        height: 32px;
+        margin-left: 12px;
+      }
+      > .avatar {
+        img {
+          width: 34px;
+          height: 34px;
+        }
+      }
+    }
+  }
+
+  .loginButton {
+    font-size: 10px;
+    margin-left: 20px;
+    padding: 5px 8px;
   }
 }
 </style>

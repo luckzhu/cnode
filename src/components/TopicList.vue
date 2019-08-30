@@ -306,7 +306,6 @@ export default {
 
 @media screen and (max-width: 640px) {
   #topicList {
-    
     h3,
     .topic_item {
       font-size: 14px;
@@ -358,6 +357,12 @@ export default {
         }
       }
     }
+  }
+}
+@media screen and (max-width: 480px) {
+  #topicList {
+    height: 100%;
+    width: 100%;
   }
 }
 </style>

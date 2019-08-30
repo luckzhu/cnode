@@ -21,17 +21,29 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#header{
-  margin-bottom: 20px;
-}
-#footer_main{
-  margin-top: 20px;
+.container {
+  display: flex;
+  flex-direction: column;
+  #header {
+    margin-bottom: 20px;
+  }
+  .main {
+    flex: 1;
+  }
+  #footer_main {
+    margin-top: 20px;
+    font-size: 10px;
+  }
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 480px) {
+  .container {
+    #footer_main {
+      display: none;
+    }
+  }
   .main {
-  
-    // flex: 1;
+    margin-bottom: 30px;
   }
 }
 </style>

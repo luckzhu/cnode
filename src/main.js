@@ -6,7 +6,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import App from './App'
 import router from './router'
 import Meta from 'vue-meta'
-// import '@/assets/js/common.js' //移动端适配common
+import '@/assets/js/common.js' //移动端适配common
 import Util from '@/helpers/util.js'
 import store from './store/index'
 

@@ -2,11 +2,11 @@
   <div>
     <div class="getstart">
       <MemberGuide></MemberGuide>
-      <div class="side">
+      <!-- <div class="side">
         <Standings></Standings>
         <Noreply class="noReply"></Noreply>
         <Adside></Adside>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
 .getstart {
   display: flex;
   justify-content: center;
-  margin: 0 20px;
+  // margin: 0 20px;
 
   > .side {
     display: flex;
@@ -42,4 +42,5 @@ export default {
     }
   }
 }
+
 </style>
