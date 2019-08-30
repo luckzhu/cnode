@@ -8,7 +8,7 @@
           </router-link>
         </div>
       </div>
-      <p class="describe">Top100 积分榜</p>
+      <p class="describe">Top10 积分榜</p>
     </div>
   </div>
 </template>

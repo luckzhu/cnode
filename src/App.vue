@@ -27,7 +27,7 @@ export default {
   mounted() {
     if (this._isMobile()) {
       console.log("手机端");
-      this.$router.replace("/wap");
+      this.$router.replace("/pc");
     } else {
       console.log("pc端");
       this.$router.replace("/pc");
@@ -50,4 +50,81 @@ export default {
 body {
   background-color: #f3f3f3;
 }
+
+.el-input__inner {
+    height: 40px;
+    font-size: 14px;
+    box-shadow: none;
+    border: 1px solid #f5f5f5;
+    background-color: #f5f5f5;
+}
+ 
+.el-input__inner:hover {
+    border-color: #80bd01;
+}
+ 
+.el-input__inner:focus {
+    border-color: #80bd01;
+    box-shadow: none;
+    transition-duration: .5s;
+}
+ 
+.el-input__inner::-webkit-input-placeholder {
+    line-height: 20px;
+}
+ 
+
+.el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+    margin: 0 5px;
+    background-color: #fff;
+    border: 1px solid #dfdfdf;
+    color: #606266;
+    min-width: 30px;
+    border-radius: 2px;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active{
+    background-color: #80bd01;
+    color: #FFF;
+}
+
+.el-pagination.is-background .el-pager li:not(.active):hover{
+    color: #80bd01;
+}
+
+.el-menu-item {
+    font-size: 17px;
+    padding: 0 13px;
+   
+}
+
+.el-menu--horizontal>.el-menu-item {
+    height: 40px;
+    line-height: 40px;
+    &.is-active {
+        border-bottom: 2px solid #80bd01;
+        color: #121212;
+    }
+}
+
+.el-button--primary {
+    color: #FFF;
+    background-color: #80bd01;
+    border-color: #80bd01;
+    font-weight: 600;
+    padding: 10px 16px;
+}
+
+.el-button--primary:hover {
+    color: #FFF;
+    background-color: #2e7c32;
+    border-color: #2e7c32;
+}
+
+.el-button--primary:focus {
+    color: #FFF;
+    background-color: #2e7c32;
+    border-color: #2e7c32;
+}
+
 </style>
