@@ -3,8 +3,8 @@
     <div class="main">
       <TopicList class="topocList"></TopicList>
       <div class="side">
-        <Standings></Standings>
-        <Noreply class="noReply"></Noreply>
+        <Standings class="standings"></Standings>
+        <!-- <Noreply class="noReply"></Noreply> -->
         <Adside></Adside>
       </div>
     </div>
@@ -37,8 +37,8 @@ export default {
     display: flex;
     flex-direction: column;
 
-    > .noReply {
-      margin: 20px 0;
+    > .standings {
+      margin-bottom: 20px;
     }
   }
 }
