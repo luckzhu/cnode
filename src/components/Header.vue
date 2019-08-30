@@ -15,7 +15,7 @@
     </div>
     <div class="topSearch">
       <el-input
-        placeholder="Search your favorite thing..."
+        placeholder="Search Your Favorite Thing..."
         v-model="searchInput"
         clearable
       >
@@ -63,7 +63,6 @@ export default {
     if (this.isLogin && this.loginname) {
       user.getUserByName({ loginname: this.loginname }).then(res => {
         this.avatar_url = res.data.data.avatar_url;
-        console.log(res);
       });
     }
   },
@@ -71,7 +70,6 @@ export default {
     if (this.isLogin && this.loginname) {
       user.getUserByName({ loginname: this.loginname }).then(res => {
         this.avatar_url = res.data.data.avatar_url;
-        console.log(res);
       });
     }
   },

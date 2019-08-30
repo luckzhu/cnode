@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div class="detail-container">
+    <transition name="fade">
+      <div v-if="isLoading" class="loading">
+        <my-loading></my-loading>
+      </div>
+    </transition>
+    <div class="detail-container" v-if="!isLoading">
       <div id="detail" v-if="!topicDetail[0] && !authorInfo[0]">
         <h3 class="title">{{ topicDetail.title }}</h3>
         <div class="topicInfo">
@@ -30,7 +35,10 @@
             :key="reply.id"
           >
             <div class="avatar-name">
-              <img :src="reply.author.avatar_url" alt="" />
+              <router-link :to="`/pc/user/${reply.author.loginname}`">
+                <img :src="reply.author.avatar_url" alt="" />
+              </router-link>
+
               <p class="name">{{ reply.author.loginname }}</p>
               <div class="comment-info">
                 <span>{{ index + 1 }}楼</span>
@@ -49,9 +57,11 @@
 <script>
 import topic from "@/api/topic.js";
 import user from "@/api/user.js";
+import Loading from "./Loading";
 export default {
   data() {
     return {
+      isLoading: true,
       topicDetail: [],
       id: null,
       author: null,
@@ -64,10 +74,14 @@ export default {
       recentTopics: []
     };
   },
+  components: {
+    "my-loading": Loading
+  },
   created() {
     this.id = this.$route.params.id;
     this.getTopicById(this.id).then(() => {
       this.getUserByName(this.loginname);
+      this.isLoading = false;
     });
   },
   methods: {
@@ -110,6 +124,19 @@ export default {
 .detail-container {
   display: flex;
   justify-content: center;
+}
+
+.loading {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  width: 980px;
+  padding: 40px;
+  margin-right: 20px;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 #detail {
@@ -198,12 +225,12 @@ export default {
     > .avatar-name {
       display: flex;
       align-items: flex-end;
-      > img {
+       img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
       }
-      > .name {
+       .name {
         font-size: 16px;
         font-weight: bold;
         margin: 0 12px;

@@ -34,8 +34,6 @@ export default {
     ]),
     onLogin() {
       this.login({ accesstoken: this.token }).then(res => {
-        console.log(this.loginname);
-        console.log(res);
         this.$router.push({ path: this.$route.query.redirect || "/pc" });
       });
     }

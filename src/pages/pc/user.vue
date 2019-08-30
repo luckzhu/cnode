@@ -1,8 +1,8 @@
 <template>
   <div id="user">
-    <UserInfo :loginname="loginname"></UserInfo>
+    <UserInfo></UserInfo>
     <div class="side">
-      <DetailSideBar :loginname="loginname"></DetailSideBar>
+      <DetailSideBar></DetailSideBar>
       <Adside></Adside>
     </div>
   </div>
@@ -14,14 +14,6 @@ import DetailSideBar from "@/components/DetailSideBar.vue";
 import Adside from "@/components/Adside.vue";
 
 export default {
-  data() {
-    return {
-      loginname: null
-    };
-  },
-  created() {
-    this.loginname = this.$route.params.loginname;
-  },
   components: {
     UserInfo,
     DetailSideBar,

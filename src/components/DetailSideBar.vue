@@ -14,7 +14,7 @@
 
       <div
         id="author-recent-topics"
-        v-if="recentTopics && recentTopics.length > 0 &&!isShowRecent"
+        v-if="recentTopics && recentTopics.length > 0 && !isShowRecent"
       >
         <p>近期发表:</p>
         <div
@@ -30,7 +30,11 @@
 
       <div
         id="author-recent-replies"
-        v-if="authorInfo.recent_replies && authorInfo.recent_replies.length > 0 &&!isShowRecent"
+        v-if="
+          authorInfo.recent_replies &&
+            authorInfo.recent_replies.length > 0 &&
+            !isShowRecent
+        "
       >
         <p>近期回复:</p>
         <div
@@ -45,7 +49,7 @@
       </div>
     </div>
   </div>
-</template>
+</template>   
 
 <script>
 import topic from "@/api/topic.js";
@@ -55,14 +59,9 @@ export default {
     return {
       authorInfo: [],
       score: null,
-      recentTopics: []
+      recentTopics: [],
+      loginname: ""
     };
-  },
-  props: {
-    loginname: {
-      type: String,
-      required: true
-    }
   },
   computed: {
     isShowRecent() {
@@ -72,11 +71,17 @@ export default {
       return false;
     }
   },
-  mounted() {
+  created() {
+    this.id = this.$route.params.id;
+    this.loginname = this.$route.params.loginname;
+    if (this.id) {
+      this.getTopicById(this.id).then(res => {
+        this.getUserByName(this.loginname);
+      });
+    }
     if (this.loginname) {
       this.getUserByName(this.loginname);
     }
-    console.log();
   },
   methods: {
     getUserByName(loginname) {
@@ -88,6 +93,25 @@ export default {
           this.recentTopics.splice(5);
         }
       });
+    },
+    getTopicById(id) {
+      return topic.getTopicById({ id }).then(res => {
+        this.loginname = res.data.data.author.loginname;
+      });
+    }
+  },
+  watch: {
+    $route(to, from) {
+      this.id = this.$route.params.id;
+      this.loginname = this.$route.params.loginname;
+      if (this.id) {
+        this.getTopicById(this.id).then(res => {
+          this.getUserByName(this.loginname);
+        });
+      }
+      if (this.loginname) {
+        this.getUserByName(this.loginname);
+      }
     }
   }
 };

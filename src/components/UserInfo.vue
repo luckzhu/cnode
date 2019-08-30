@@ -1,72 +1,84 @@
 <template>
-  <div id="user">
-    <div>
-      <div class="userInfo"></div>
-      <div class="recentTopics" v-if="recentTopics[0]">
-        <p class="tab-bar">近期发表</p>
-        <div class="topic_item" v-for="topic in recentTopics" :key="topic.id">
-          <div class="avatar">
-            <router-link :to="`PC/user/${topic.author.loginname}`"
-              ><img :src="topic.author.avatar_url" alt=""
-            /></router-link>
-          </div>
-          <div class="topicInfo">
-            <h3>
-              <router-link :to="`/pc/detail/${topic.id}`">{{
-                ellipsis(topic.title, 35)
-              }}</router-link>
-            </h3>
-            <p>{{ topic.author.loginname }}</p>
-            <div class="disscussPeople">
-              <div v-for="reply in topic.replies" :key="reply.reply_id">
-                <img :src="reply.author.avatar_url" alt="" /> 
+  <div>
+    <transition name="fade">
+      <div v-if="isLoading" class="loading">
+        <my-loading></my-loading>
+      </div>
+    </transition>
+
+    <div id="user" v-if="!isLoading">
+      <div>
+        <div class="userInfo"></div>
+        <div class="recentTopics" v-if="recentTopics[0]">
+          <p class="tab-bar">近期发表</p>
+          <div class="topic_item" v-for="topic in recentTopics">
+            <div class="avatar">
+              <router-link :to="`/PC/user/${topic.author.loginname}`"
+                ><img :src="topic.author.avatar_url" alt=""
+              /></router-link>
+            </div>
+            <div class="topicInfo">
+              <h3>
+                <router-link :to="`/pc/detail/${topic.id}`">{{
+                  ellipsis(topic.title, 35)
+                }}</router-link>
+              </h3>
+              <p>{{ topic.author.loginname }}</p>
+              <div class="disscussPeople">
+                <div v-for="reply in topic.replies" class="disscussImgWrapper">
+                  <router-link :to="`/pc/user/${reply.author.loginname}`">
+                    <img :src="reply.author.avatar_url" alt="" />
+                  </router-link>
+                </div>
+                <span>{{ friendlyDate(topic.last_reply_at) }}</span>
               </div>
-              <span>{{ friendlyDate(topic.last_reply_at) }}</span>
+            </div>
+            <div class="replyAndVisit">
+              <my-icon name="discuss1e"></my-icon>
+              <span>{{ topic.reply_count }}</span>
+              <my-icon name="see"></my-icon>
+              <span>{{ topic.visit_count }}</span>
             </div>
           </div>
-          <div class="replyAndVisit">
-            <my-icon name="discuss1e"></my-icon>
-            <span>{{ topic.reply_count }}</span>
-            <my-icon name="see"></my-icon>
-            <span>{{ topic.visit_count }}</span>
-          </div>
         </div>
-      </div>
-      <div class="recentTopics" v-else>
-        <p class="tab-bar">您还没有发表过文章</p>
-      </div>
-      <div class="recentReplies" v-if="recentReplies[0]">
-        <p class="tab-bar">近期回复</p>
-        <div class="topic_item" v-for="topic in recentReplies" :key="topic.id">
-          <div class="avatar">
-            <router-link :to="`PC/user/${topic.author.loginname}`"
-              ><img :src="topic.author.avatar_url" alt=""
-            /></router-link>
-          </div>
-          <div class="topicInfo">
-            <h3>
-              <router-link :to="`/pc/detail/${topic.id}`">{{
-                ellipsis(topic.title, 35)
-              }}</router-link>
-            </h3>
-            <p>{{ topic.author.loginname }}</p>
-            <div class="disscussPeople">
-              <div v-for="reply in topic.replies" :key="reply.reply_id">
-                <img :src="reply.author.avatar_url" alt="" /> 
+        <div class="recentTopics" v-else>
+          <p class="tab-bar">您还没有发表过文章</p>
+        </div>
+        <div class="recentReplies" v-if="recentReplies[0]">
+          <p class="tab-bar">近期回复</p>
+          <div class="topic_item" v-for="topic in recentReplies">
+            <div class="avatar">
+              <router-link :to="`/PC/user/${topic.author.loginname}`"
+                ><img :src="topic.author.avatar_url" alt=""
+              /></router-link>
+            </div>
+            <div class="topicInfo">
+              <h3>
+                <router-link :to="`/pc/detail/${topic.id}`">{{
+                  ellipsis(topic.title, 35)
+                }}</router-link>
+              </h3>
+              <p>{{ topic.author.loginname }}</p>
+              <div class="disscussPeople">
+                <div v-for="reply in topic.replies" class="disscussImgWrapper">
+                  <router-link :to="`/pc/user/${reply.author.loginname}`">
+                    <img :src="reply.author.avatar_url" alt="" />
+                  </router-link>
+                </div>
+                <span>{{ friendlyDate(topic.last_reply_at) }}</span>
               </div>
-              <span>{{ friendlyDate(topic.last_reply_at) }}</span>
+            </div>
+            <div class="replyAndVisit">
+              <my-icon name="discuss1e"></my-icon>
+              <span>{{ topic.reply_count }}</span>
+              <my-icon name="see"></my-icon>
+              <span>{{ topic.visit_count }}</span>
             </div>
           </div>
-          <div class="replyAndVisit">
-            <my-icon name="discuss1e"></my-icon>
-            <span>{{ topic.reply_count }}</span>
-            <my-icon name="see"></my-icon>
-            <span>{{ topic.visit_count }}</span>
-          </div>
         </div>
-      </div>
-      <div class="recentReplies" v-else>
-        <p class="tab-bar">您还没有回复过文章</p>
+        <div class="recentReplies" v-else>
+          <p class="tab-bar">您还没有回复过文章</p>
+        </div>
       </div>
     </div>
   </div>
@@ -76,27 +88,28 @@
 import user from "@/api/user.js";
 import Icon from "./Icon";
 import topic from "@/api/topic.js";
+import Loading from "./Loading";
 
 export default {
   data() {
     return {
+      isLoading: true,
       authorInfo: null,
       score: null,
       recentTopics: [],
-      recentReplies: []
+      recentReplies: [],
+      loginname: ""
     };
   },
   components: {
+    "my-loading": Loading,
     "my-icon": Icon
   },
-  props: {
-    loginname: {
-      type: String,
-      required: true
-    }
-  },
   created() {
-    this.getUserByName(this.loginname);
+    this.loginname = this.$route.params.loginname;
+    if (this.loginname) {
+      this.getUserByName(this.loginname);
+    }
   },
   methods: {
     getUserByName(loginname) {
@@ -108,6 +121,7 @@ export default {
           this.getCount(this.recentTopics);
           this.recentReplies = res.data.data.recent_replies;
           this.getCount(this.recentReplies);
+          this.isLoading = false;
         });
       }
     },
@@ -125,12 +139,34 @@ export default {
         });
       }
     }
+  },
+  watch: {
+    $route(to, from) {
+      this.loginname = this.$route.params.loginname;
+      if (this.loginname) {
+        this.getUserByName(this.loginname);
+      }
+    }
   }
 };
 </script>
 
 <style lang="scss"scoped>
 @import "@/assets/css/base.scss";
+
+.loading {
+  font-size: 16px;
+  background-color: #fff;
+  width: 690px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin-right: 20px;
+}
 
 .recentTopics,
 .recentReplies {
@@ -143,6 +179,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  margin-right: 20px;
 
   > .tab-bar {
     border-bottom: 1px solid #e8e8e8;
@@ -199,15 +236,16 @@ export default {
       > .disscussPeople {
         display: flex;
         align-items: center;
+        > .disscussImgWrapper {
+          &:not(:first-child) {
+            margin-left: -6px;
+          }
+        }
         img {
           width: 22px;
           height: 22px;
           border: 1px solid $border-color;
-
           border-radius: 50%;
-          &:not(:first-child) {
-            margin-left: -8px;
-          }
         }
         > span {
           font-size: 13px;
