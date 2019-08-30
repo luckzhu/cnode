@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="loginWrapper">
     <div id="login">
       <label for=""
         >请输入您的<span> Access Token</span>，来登陆CNode社区</label
@@ -43,6 +43,12 @@ export default {
 
 <style lang="scss">
 @import "@/assets/css/base.scss";
+.loginWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 #login {
   font-size: 16px;
   background-color: #fff;
@@ -55,6 +61,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 70vh;
   > label {
     > span {
       font-weight: bold;
@@ -63,8 +70,20 @@ export default {
   }
   > .tokenInput {
     width: 500px;
-
     margin: 20px 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #login {
+    height: 100%;
+    width: 100vw;
+    margin: 2%;
+
+    > .tokenInput {
+      width: 80%;
+      margin: 20px 0;
+    }
   }
 }
 </style>

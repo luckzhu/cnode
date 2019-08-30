@@ -262,10 +262,10 @@ export default {
 @media screen and (max-width: 480px) {
   #detail {
     height: 100%;
-    width: 100%;
+    width: 100vw;
     padding: 6%;
     font-size: 16px;
-  
+    
     > .title {
       font-size: 20px;
     }

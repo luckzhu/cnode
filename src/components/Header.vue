@@ -176,7 +176,7 @@ export default {
   #header {
     font-size: 13px;
     height: 20px;
-    padding: 16px 10px;
+    padding: 16px 6px;
     > .topNavBar {
       .logo {
         width: 80px;
@@ -208,7 +208,7 @@ export default {
 
   .loginButton {
     font-size: 10px;
-    margin-left: 20px;
+    margin-left: 28px;
     padding: 5px 8px;
   }
 }
