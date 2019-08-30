@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div id="topicList">
+    <transition name="fade">
+      <div v-if="isLoading" class="loading">
+        <my-loading></my-loading>
+      </div>
+    </transition>
+    <div id="topicList" v-if="!isLoading">
       <div class="theme_nav">
         <template>
           <el-menu
@@ -72,9 +77,11 @@
 <script>
 import topic from "@/api/topic.js";
 import Icon from "./Icon";
+import Loading from "./Loading";
 export default {
   data() {
     return {
+      isLoading: true,
       topicList: [],
       page: 1,
       activeIndex: "all",
@@ -83,7 +90,8 @@ export default {
     };
   },
   components: {
-    "my-icon": Icon
+    "my-icon": Icon,
+    "my-loading": Loading
   },
   created() {
     this.getTopicAllInfo();
@@ -123,6 +131,7 @@ export default {
     },
     getTopicAllInfo() {
       this.getTopics().then(() => {
+        this.isLoading = false;
         this.topicList.forEach(topic => {
           this.getTopicById(topic.id).then(res => {
             this.$set(topic, "replies", res.data.data.replies);
@@ -166,6 +175,18 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/base.scss";
+.loading {
+  font-size: 16px;
+  background-color: #fff;
+  width: 690px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 #topicList {
   font-size: 16px;
   background-color: #fff;

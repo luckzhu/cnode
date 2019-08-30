@@ -60,10 +60,18 @@ export default {
     ...mapGetters(["loginname", "isLogin"])
   },
   created() {
-    if (this.isLogin) {
+    if (this.isLogin && this.loginname) {
       user.getUserByName({ loginname: this.loginname }).then(res => {
         this.avatar_url = res.data.data.avatar_url;
-        console.log(res)
+        console.log(res);
+      });
+    }
+  },
+  updated() {
+    if (this.isLogin && this.loginname) {
+      user.getUserByName({ loginname: this.loginname }).then(res => {
+        this.avatar_url = res.data.data.avatar_url;
+        console.log(res);
       });
     }
   },
@@ -141,7 +149,7 @@ export default {
       width: 32px;
       height: 32px;
       margin-left: 12px;
-      color: $gray;
+      color: $theme-color;
       cursor: pointer;
     }
     > .avatar {

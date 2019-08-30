@@ -190,12 +190,21 @@ body,
 
 .el-button--primary:hover {
     color: #FFF;
-    background-color: #2eff38;
-    border-color: #2eff38;
+    background-color: #2e7c32;
+    border-color: #2e7c32;
 }
 
 .el-button--primary:focus {
     color: #FFF;
-    background-color: #2eff38;
-    border-color: #2eff38;
+    background-color: #2e7c32;
+    border-color: #2e7c32;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .3s;
 }
