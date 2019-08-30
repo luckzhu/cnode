@@ -8,6 +8,8 @@ import '@/assets/js/common.js' //移动端适配common
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import Util from '@/helpers/util.js'
+import store from './store/index'
+
 
 Vue.use(Meta)
 Vue.use(ElementUI)
@@ -19,6 +21,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

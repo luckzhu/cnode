@@ -31,7 +31,11 @@
           </h3>
           <p>{{ topic.author.loginname }}</p>
           <div class="disscussPeople">
-            <div v-for="reply in topic.replies" :key="reply.id">
+            <div
+              v-for="reply in topic.replies"
+              :key="reply.id"
+              class="disscussImgWrapper"
+            >
               <router-link :to="`/pc/user/${reply.author.loginname}`">
                 <img :src="reply.author.avatar_url" alt="" />
               </router-link>
@@ -75,7 +79,7 @@ export default {
     "my-icon": Icon
   },
   created() {
-    this.getTopicAllInfo()
+    this.getTopicAllInfo();
   },
   methods: {
     getTopics() {
@@ -130,7 +134,7 @@ export default {
     handleSelect(key, keyPath) {
       this.tab = key;
       this.activeIndex = key;
-       this.getTopicAllInfo()
+      this.getTopicAllInfo();
     }
   }
 };
@@ -191,17 +195,18 @@ export default {
       > .disscussPeople {
         display: flex;
         align-items: center;
+        > .disscussImgWrapper {
+          &:not(:first-child) {
+            margin-left: -6px;
+          }
+        }
         img {
           width: 22px;
           height: 22px;
           border: 1px solid $border-color;
-
           border-radius: 50%;
-          &:not(:first-child) {
-            margin-left: -8px;
-          }
         }
-        > span {
+        span {
           font-size: 13px;
           color: $lightestGray;
           margin-left: 4px;

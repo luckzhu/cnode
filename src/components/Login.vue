@@ -1,7 +1,9 @@
 <template>
   <div>
     <div id="login">
-      <label for="">请输入您的Access Token，来登陆CNode社区</label>
+      <label for=""
+        >请输入您的<span> Access Token</span>，来登陆CNode社区</label
+      >
       <div class="tokenInput">
         <el-input
           placeholder="请输入Token"
@@ -9,21 +11,40 @@
           show-password
         ></el-input>
       </div>
+      <el-button type="primary" @click="onLogin">确认登陆</el-button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
       token: ""
     };
+  },
+  computed: {
+    ...mapGetters(["loginname", "isLogin"])
+  },
+  methods: {
+    ...mapActions([
+      "login", // 映射为 `this.$store.dispatch('login')`
+      "logout"
+    ]),
+    onLogin() {
+      this.login({ accesstoken: this.token }).then(res => {
+        console.log(this.loginname);
+        console.log(res);
+        this.$router.push({ path: this.$route.query.redirect || "/pc" });
+      });
+    }
   }
 };
 </script>
 
 <style lang="scss">
+@import "@/assets/css/base.scss";
 #login {
   font-size: 16px;
   background-color: #fff;
@@ -36,10 +57,15 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  >.tokenInput{
+  > label {
+    > span {
+      font-weight: bold;
+      color: $theme-color;
+    }
+  }
+  > .tokenInput {
     width: 500px;
- 
+
     margin: 20px 0;
   }
 }

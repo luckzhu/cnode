@@ -32,6 +32,9 @@
           </div>
         </div>
       </div>
+      <div class="recentTopics" v-else>
+        <p class="tab-bar">您还没有发表过文章</p>
+      </div>
       <div class="recentReplies" v-if="recentReplies[0]">
         <p class="tab-bar">近期回复</p>
         <div class="topic_item" v-for="topic in recentReplies" :key="topic.id">
@@ -61,6 +64,9 @@
             <span>{{ topic.visit_count }}</span>
           </div>
         </div>
+      </div>
+      <div class="recentReplies" v-else>
+        <p class="tab-bar">您还没有回复过文章</p>
       </div>
     </div>
   </div>

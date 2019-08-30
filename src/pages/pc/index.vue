@@ -13,7 +13,6 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
-  //配置移动端页面meta
   components: {
     Header,
     Footer

@@ -24,10 +24,15 @@
     <!-- 已登录的header右侧 -->
     <template v-if="isLogin">
       <div class="myCenter">
-        <my-icon name="discussion" class="icon"></my-icon>
-        <my-icon name="note" class="icon"></my-icon>
         <div class="avatar">
-          <img src="@/assets/logo.png" alt="" />
+          <router-link :to="`/pc/user/${loginname}`">
+            <img :src="avatar_url" alt=""
+          /></router-link>
+        </div>
+
+        <!-- <my-icon name="discussion" class="icon"></my-icon> -->
+        <div @click="onLogout">
+          <my-icon name="logout" class="icon"></my-icon>
         </div>
       </div>
     </template>
@@ -42,12 +47,51 @@
 
 <script>
 import Icon from "./Icon";
+import { mapGetters, mapActions } from "vuex";
+import user from "@/api/user.js";
 export default {
   data() {
     return {
-      isLogin: false,
-      searchInput: ""
+      searchInput: "",
+      avatar_url: ""
     };
+  },
+  computed: {
+    ...mapGetters(["loginname", "isLogin"])
+  },
+  created() {
+    if (this.isLogin) {
+      user.getUserByName({ loginname: this.loginname }).then(res => {
+        this.avatar_url = res.data.data.avatar_url;
+        console.log(res)
+      });
+    }
+  },
+  methods: {
+    ...mapActions([
+      "login", // 映射为 `this.$store.dispatch('login')`
+      "logout"
+    ]),
+    onLogout() {
+      this.$confirm("确定要注销账号吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.logout();
+          this.$message({
+            type: "success",
+            message: "注销成功!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消"
+          });
+        });
+    }
   },
   components: {
     "my-icon": Icon
@@ -91,19 +135,19 @@ export default {
   > .myCenter {
     display: flex;
     vertical-align: center;
-
-    > .icon {
+    .icon {
       text-align: center;
       font-size: 24px;
       width: 32px;
       height: 32px;
-      margin-right: 15px;
-      color: $black;
+      margin-left: 12px;
+      color: $gray;
+      cursor: pointer;
     }
     > .avatar {
-      > img {
-        width: 32px;
-        height: 32px;
+      img {
+        width: 34px;
+        height: 34px;
         border-radius: 50%;
         border: 1px solid $border-color;
       }
