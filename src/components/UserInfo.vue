@@ -18,9 +18,9 @@
             </h3>
             <p>{{ topic.author.loginname }}</p>
             <div class="disscussPeople">
-              <img :src="topic.author.avatar_url" alt="" />
-              <img :src="topic.author.avatar_url" alt="" />
-              <img :src="topic.author.avatar_url" alt="" />
+              <div v-for="reply in topic.replies" :key="reply.reply_id">
+                <img :src="reply.author.avatar_url" alt="" /> 
+              </div>
               <span>{{ friendlyDate(topic.last_reply_at) }}</span>
             </div>
           </div>
@@ -51,9 +51,9 @@
             </h3>
             <p>{{ topic.author.loginname }}</p>
             <div class="disscussPeople">
-              <img :src="topic.author.avatar_url" alt="" />
-              <img :src="topic.author.avatar_url" alt="" />
-              <img :src="topic.author.avatar_url" alt="" />
+              <div v-for="reply in topic.replies" :key="reply.reply_id">
+                <img :src="reply.author.avatar_url" alt="" /> 
+              </div>
               <span>{{ friendlyDate(topic.last_reply_at) }}</span>
             </div>
           </div>
@@ -104,7 +104,6 @@ export default {
         user.getUserByName({ loginname }).then(res => {
           this.authorInfo = res.data.data;
           this.score = res.data.data.score;
-          console.log(2, this.authorInfo);
           this.recentTopics = res.data.data.recent_topics;
           this.getCount(this.recentTopics);
           this.recentReplies = res.data.data.recent_replies;
@@ -116,6 +115,10 @@ export default {
       if (array && array.length > 0) {
         array.forEach(item => {
           topic.getTopicById({ id: item.id }).then(res => {
+            this.$set(item, "replies", res.data.data.replies);
+            if (item.replies && item.replies.length > 3) {
+              item.replies.splice(3);
+            }
             this.$set(item, "reply_count", res.data.data.reply_count);
             this.$set(item, "visit_count", res.data.data.visit_count);
           });

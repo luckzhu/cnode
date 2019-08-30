@@ -24,11 +24,17 @@
           /></router-link>
         </div>
         <div class="topicInfo">
-          <h3>
-            <router-link :to="`/pc/detail/${topic.id}`">{{
-              ellipsis(topic.title, 35)
-            }}</router-link>
-          </h3>
+          <div class="title">
+            <div class="tabLabel">
+              {{ topic.tabLabel }}
+            </div>
+            <h3>
+              <router-link :to="`/pc/detail/${topic.id}`">{{
+                ellipsis(topic.title, 32)
+              }}</router-link>
+            </h3>
+          </div>
+
           <p>{{ topic.author.loginname }}</p>
           <div class="disscussPeople">
             <div
@@ -72,7 +78,8 @@ export default {
       topicList: [],
       page: 1,
       activeIndex: "all",
-      tab: "all"
+      tab: "all",
+      tabLabel: null
     };
   },
   components: {
@@ -81,6 +88,7 @@ export default {
   created() {
     this.getTopicAllInfo();
   },
+  computed: {},
   methods: {
     getTopics() {
       this.page = parseInt(this.$route.query.page) || 1;
@@ -88,11 +96,27 @@ export default {
         .getTopics({ page: this.page, limit: 15, tab: this.tab })
         .then(res => {
           this.topicList = res.data.data;
+          this.confirmTab(this.topicList);
           this.$router.push({
             path: "/pc",
             query: { page: this.page, tab: this.tab }
           });
         });
+    },
+    confirmTab(array) {
+      array.forEach(item => {
+        if (item.top) {
+          item.tabLabel = "置顶";
+        } else if (item.good) {
+          item.tabLabel = "精华";
+        } else if (item.tab === "share") {
+          item.tabLabel = "分享";
+        } else if (item.tab === "job") {
+          item.tabLabel = "招聘";
+        } else if (item.tab === "ask") {
+          item.tabLabel = "问答";
+        }
+      });
     },
     getTopicById(id) {
       return topic.getTopicById({ id });
@@ -180,7 +204,20 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      > h3 {
+      > .title {
+        display: flex;
+        align-items: flex-end;
+        > .tabLabel {
+          font-size: 14px;
+          margin-right: 6px;
+          background-color: $theme-color;
+          color: #fff;
+          padding: 1px 4px;
+          border-radius: 4px;
+          white-space: nowrap;
+        }
+      }
+      h3 {
         font-size: 17px;
         white-space: nowrap;
         font-weight: 500;
