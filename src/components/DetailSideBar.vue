@@ -3,7 +3,11 @@
     <div class="side-bar">
       <div id="detail-side-bar">
         <div class="avatar">
+            <router-link :to="`/pc/user/${loginname}`">
+
           <img :src="authorInfo.avatar_url" alt="" />
+          </router-link>
+
         </div>
         <p class="userName">{{ authorInfo.loginname }}</p>
         <p>积分: {{ score }}</p>
@@ -144,7 +148,7 @@ export default {
   align-items: center;
   color: #121212;
   > .avatar {
-    > img {
+     img {
       display: block;
       width: 100px;
       height: 100px;

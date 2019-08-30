@@ -16,7 +16,9 @@
 
         <div class="topicDetail">
           <div class="avatar">
-            <img :src="avatar_url" alt="" />
+            <router-link :to="`/pc/user/${loginname}`">
+              <img :src="avatar_url" alt="" />
+            </router-link>
           </div>
           <div class="artical">
             <div class="userName">
@@ -225,12 +227,12 @@ export default {
     > .avatar-name {
       display: flex;
       align-items: flex-end;
-       img {
+      img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
       }
-       .name {
+      .name {
         font-size: 16px;
         font-weight: bold;
         margin: 0 12px;
