@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <Header></Header>
+    <Header id="header"></Header>
     <div class="main">
       <router-view> </router-view>
     </div>
-    <Footer></Footer>
+    <Footer id="footer_main"></Footer>
   </div>
 </template>
 
@@ -21,15 +21,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+#header{
+  margin-bottom: 20px;
 }
-.main {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-  flex: 1;
+#footer_main{
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 960px) {
+  .main {
+  
+    // flex: 1;
+  }
 }
 </style>

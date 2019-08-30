@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <div class="main">
-      <TopicList class="topocList"></TopicList>
-      <div class="side">
-        <Standings class="standings"></Standings>
-        <!-- <Noreply class="noReply"></Noreply> -->
-        <Adside></Adside>
-      </div>
+  <div class="main">
+    <TopicList class="topicList"></TopicList>
+    <div class="side">
+      <Standings class="standings"></Standings>
+      <!-- <Noreply class="noReply"></Noreply> -->
+      <Adside class="adside"></Adside>
     </div>
   </div>
 </template>
@@ -31,19 +29,30 @@ export default {
 .main {
   display: flex;
   justify-content: center;
-  margin: 0 20px;
 
   > .side {
     display: flex;
     flex-direction: column;
-
+    margin-left: 20px;
     > .standings {
       margin-bottom: 20px;
     }
   }
 }
 
-.topocList {
-  margin-right: 20px;
+@media screen and (max-width: 1050px) {
+  .main {
+    display: flex;
+    justify-content: center;
+    > .topicList {
+      width: 80%;
+    }
+    > .side {
+      margin-left: -20px;
+      > .standings {
+        display: none;
+      }
+    }
+  }
 }
 </style>

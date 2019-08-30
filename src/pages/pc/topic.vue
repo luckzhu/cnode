@@ -4,7 +4,7 @@
       <Detail class="detail"></Detail>
       <div>
         <DetailSideBar :loginname="loginname" v-if="loginname"></DetailSideBar>
-        <Adside></Adside>
+        <Adside class="adSide"></Adside>
       </div>
     </div>
   </div>
@@ -42,5 +42,8 @@ export default {
   display: flex;
   justify-content: center;
   margin: 0 20px;
+}
+.adSide{
+  margin-left: 20px;
 }
 </style>

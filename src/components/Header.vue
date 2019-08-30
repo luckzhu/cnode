@@ -39,7 +39,7 @@
     <!-- 未登录 -->
     <template v-if="!isLogin">
       <router-link to="/pc/login">
-        <el-button type="primary">L0G IN</el-button></router-link
+        <el-button type="primary" class="loginButton">L0G IN</el-button></router-link
       >
     </template>
   </div>
@@ -107,6 +107,14 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/css/base.scss";
+@media screen and (max-width: 960px) {
+  .topSearch{
+    display: none;
+  }
+  .loginButton{
+    margin-left: 60px;
+  }
+}
 #header {
   color: $black;
   display: flex;

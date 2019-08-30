@@ -157,7 +157,7 @@ export default {
 .loading {
   font-size: 16px;
   background-color: #fff;
-  width: 690px;
+  width: 560px;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -172,14 +172,14 @@ export default {
 .recentReplies {
   font-size: 16px;
   background-color: #fff;
-  width: 690px;
+  // width: 690px;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-  margin-right: 20px;
+  // margin-right: 20px;
 
   > .tab-bar {
     border-bottom: 1px solid #e8e8e8;
@@ -255,5 +255,29 @@ export default {
       }
     }
   }
+}
+
+@media screen and (max-width: 1000px) {
+  #user {
+    > .recentTopics {
+      margin: 0px;
+      h3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    > .recentReplies {
+      margin: 0px;
+      h3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
 }
 </style>

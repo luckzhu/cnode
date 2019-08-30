@@ -130,6 +130,7 @@ export default {
   width: 300px;
   padding: 20px;
   margin-bottom: 20px;
+  margin-left: 20px;
 }
 
 #detail-side-bar,
@@ -182,4 +183,11 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 1050px) {
+  .side-bar {
+    display: none;
+  }
+}
+
 </style>

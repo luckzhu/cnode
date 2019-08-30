@@ -178,7 +178,7 @@ export default {
 .loading {
   font-size: 16px;
   background-color: #fff;
-  width: 690px;
+  width: 651px;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -190,7 +190,7 @@ export default {
 #topicList {
   font-size: 16px;
   background-color: #fff;
-  width: 690px;
+  // width: 100%;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -240,7 +240,7 @@ export default {
       }
       h3 {
         font-size: 17px;
-        white-space: nowrap;
+
         font-weight: 500;
         color: $black;
         margin-top: 6px;
@@ -283,6 +283,79 @@ export default {
       > span {
         margin-right: 5px;
         margin-left: 1px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  #topicList {
+  }
+}
+
+@media screen and (max-width: 860px) {
+  #topicList {
+    h3,
+    .topic_item {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #topicList {
+    
+    h3,
+    .topic_item {
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      .topicInfo {
+        > .title {
+          > .tabLabel {
+            font-size: 12px;
+            margin-right: 6px;
+            padding: 1px 4px;
+            border-radius: 4px;
+            white-space: nowrap;
+          }
+        }
+        h3 {
+          font-size: 15px;
+          font-weight: 500;
+          margin-top: 6px;
+        }
+        p {
+          font-size: 12px;
+          margin-bottom: 4px;
+        }
+        > .disscussPeople {
+          > .disscussImgWrapper {
+            &:not(:first-child) {
+              margin-left: -6px;
+            }
+          }
+          img {
+            width: 22px;
+            height: 22px;
+          }
+          span {
+            font-size: 11px;
+            margin-left: 4px;
+          }
+        }
+      }
+
+      > .replyAndVisit {
+        font-size: 11px;
+        > span {
+          margin-right: 5px;
+          margin-left: 1px;
+        }
       }
     }
   }

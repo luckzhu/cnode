@@ -46,13 +46,12 @@ export default new Router({
           path: 'login',
           component: login
         }
-        
       ]
     },
     {
       path: '/wap',
       name: 'wap',
-      component: wap
+      component: wap,
     }
 
   ]

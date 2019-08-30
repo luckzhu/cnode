@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="apiWrapper">
     <div class="panel" id="content">
       <!-- <div class="header">
         <ul class="breadcrumb">
@@ -209,6 +209,10 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+.apiWrapper{
+  display: flex;
+  justify-content: center;
+}
 .panel {
   font-size: 16px;
   background-color: #fff;

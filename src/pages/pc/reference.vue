@@ -139,6 +139,7 @@ export default {
 <style lang="scss" scoped>
 .reference {
   display: flex;
+  justify-content: center;
 }
 .panel {
   font-size: 16px;

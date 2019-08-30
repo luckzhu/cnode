@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="adside">
     <div class="panel">
       <div class="inner ads">
         <a
@@ -78,6 +78,11 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+@media screen and (max-width: 1050px) {
+  #adside {
+    display: none;
+  }
+}
 .panel {
   font-size: 16px;
   background-color: #fff;
@@ -91,7 +96,7 @@ export default {};
   align-items: center;
   color: #121212;
   margin-bottom: 20px;
-
+  
   img {
     max-width: 100%;
     border-radius: 5px;

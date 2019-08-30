@@ -133,7 +133,7 @@ export default {
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   display: flex;
-  width: 980px;
+  width: 970px;
   padding: 40px;
   margin-right: 20px;
   justify-content: center;
@@ -148,9 +148,9 @@ export default {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  width: 980px;
+  // width: 980px;
   padding: 40px;
-  margin-right: 20px;
+  // margin-right: 20px;
   > .title {
     font-size: 32px;
   }
@@ -257,5 +257,17 @@ export default {
       margin-top: -10px;
     }
   }
+}
+
+@media screen and (max-width: 960px) {
+  #topicList {
+  }
+}
+
+@media screen and (max-width: 860px) {
+  
+}
+
+@media screen and (max-width: 640px) {
 }
 </style>
