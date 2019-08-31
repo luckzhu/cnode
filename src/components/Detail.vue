@@ -9,8 +9,7 @@
       <div id="detail" v-if="!topicDetail[0] && !authorInfo[0]">
         <h3 class="title">{{ topicDetail.title }}</h3>
         <div class="topicInfo">
-         
-           <router-link to="/pc"><span>回到主页</span></router-link>
+          <router-link to="/pc"><span>回到主页</span></router-link>
           <span>{{ topicDetail.visit_count }} 次浏览</span>
           <span>来自 {{ topicDetail.tab }}</span>
         </div>
@@ -134,7 +133,7 @@ export default {
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   display: flex;
-  width: 970px;
+  width: 80vw;
   padding: 40px;
   margin-right: 20px;
   justify-content: center;
@@ -149,7 +148,7 @@ export default {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  // width: 980px;
+  width: 980px;
   padding: 40px;
   // margin-right: 20px;
   > .title {
@@ -160,7 +159,7 @@ export default {
     margin-top: 12px;
     margin-bottom: 30px;
     color: $lightGray;
-     span {
+    span {
       margin-right: 6px;
     }
   }
@@ -260,16 +259,25 @@ export default {
   }
 }
 
+@media screen and (max-width: 1060px) {
+  .markdown-body {
+    width: 70vw;
+  }
+  #detail {
+    width: 80vw;
+  }
+}
+
 @media screen and (max-width: 480px) {
-   .markdown-body {
-      width: 90vw;
-    }
+  .markdown-body {
+    width: 90vw;
+  }
   #detail {
     height: 100%;
     width: 100vw;
     padding: 6%;
     font-size: 16px;
-    
+
     > .title {
       font-size: 20px;
     }
@@ -277,7 +285,7 @@ export default {
       font-size: 13px;
       margin-top: 12px;
       margin-bottom: 15px;
-       span {
+      span {
         margin-right: 6px;
       }
     }

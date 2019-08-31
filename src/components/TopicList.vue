@@ -179,7 +179,7 @@ export default {
 .loading {
   font-size: 16px;
   background-color: #fff;
-  width: 651px;
+  width: 80vw;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -191,7 +191,7 @@ export default {
 #topicList {
   font-size: 16px;
   background-color: #fff;
-  // width: 100%;
+  width: 690px;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -291,6 +291,7 @@ export default {
 
 @media screen and (max-width: 960px) {
   #topicList {
+    width: 80vw;
   }
 }
 
