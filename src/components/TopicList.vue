@@ -147,6 +147,7 @@ export default {
         .getTopics({ page: newPage, limit: 10, tab: this.tab })
         .then(res => {
           this.topicList = res.data.data;
+          this.confirmTab(this.topicList);
           this.page = newPage;
           this.$router.push({
             path: "/pc",
