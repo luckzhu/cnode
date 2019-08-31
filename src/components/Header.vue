@@ -131,6 +131,8 @@ export default {
     }
     > ul {
       display: flex;
+      align-items: center;
+
       > li {
         margin-left: 24px;
         white-space: nowrap;
@@ -176,12 +178,14 @@ export default {
   #header {
     font-size: 13px;
     height: 20px;
-    padding: 16px 6px;
+    padding: 16px 30px;
+    justify-content: space-between;
+    align-items: center;
     > .topNavBar {
       .logo {
         width: 80px;
         margin-right: 0px;
-       margin-bottom: -2px;
+        margin-bottom: -2px;
       }
       > ul {
         > li {
@@ -191,16 +195,18 @@ export default {
       }
     }
     > .myCenter {
+      
       .icon {
         font-size: 24px;
         width: 32px;
         height: 32px;
-        margin-left: 12px;
+        margin-left: 5px;
       }
       > .avatar {
         img {
           width: 34px;
           height: 34px;
+          margin-left: 10px;
         }
       }
     }

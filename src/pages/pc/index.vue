@@ -29,6 +29,7 @@ export default {
   }
   .main {
     flex: 1;
+  
   }
   #footer_main {
     margin-top: 20px;
